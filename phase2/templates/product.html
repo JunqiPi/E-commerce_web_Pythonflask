@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    body {
+        background: coral;
+    }
+
+    .myblock {
+        border: 1px solid black;
+        border-radius: 4%;
+        background: rgba(0,0,0,0.5);
+        margin-top: 5%;
+        padding: 3%;
+    }
+
+    .h1 {
+        margin-bottom: 5%;
+        color: coral;
+    }
+
+    .mybtn {
+        background: rgba(0,0,0,0.5);
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Nittany Lion Market</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <div class="dropdown" id="navbarText" aria-labelledby="navbarDropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Userpage
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/seller">Seller Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12"></div>
+        <div class="col-lg-6 col-md-6 col-sm-12 myblock">
+            <h1 style="color:black;">Categories:</h1>
+            <div class="list-group">
+                <form action="/product" method="post">
+                    <button class="btn btn-lg btn-primary" name="cate" value="Root">ALL</button>
+                </form>
+                <br>
+
+                {% for category_name in result %}
+                <form action="/product" method="post">
+                    <button class="btn btn-lg btn-primary" name="cate" value="{{category_name[0]}}">{{category_name[0]}}</button>
+                    <br>
+                </form>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12"></div>
+    </div>
+
+    <h3 style="font-weight: bold;">Product Names:</h3>
+    {% for seller_email, Listing_ID, Category, Title, Product_Name, Product_Description, Price, Quantity in product %}
+    <table class="table">
+        <tr>
+            <th><button class="btn btn-secondary" data-toggle="collapse" data-target="#coll{{Listing_ID}}">{{Product_Name}}</button></th>
+        </tr>
+    </table>
+    <div class="collapse" id="coll{{Listing_ID}}">
+        <div class="card card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>seller_email</th>
+                        <th> Listing_ID</th>
+                        <th> Title</th>
+                        <th>Product_Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{seller_email}}</td>
+                        <td>{{ Listing_ID}}</td>
+                        <td>{{ Title}}</td>
+                        <td>{{Product_Description}}</td>
+                        <td>{{Price}}</td>
+                        <td>{{Quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    body {
+        background: coral;
+    }
+
+    .myblock {
+
+        margin-top: 1%;
+        padding: 3%;
+    }
+
+    .h1 {
+        margin-bottom: 5%;
+        color: coral;
+    }
+
+    .mybtn {
+        background: rgba(0,0,0,0.5);
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Nittany Lion Market</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <div class="dropdown" id="navbarText" aria-labelledby="navbarDropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Userpage
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/seller">Seller Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</nav>
+
+<div class="col-md-8 offset-md-2 myblock">
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Please Enter the product information below:</h3>
+        </div>
+        <div class="card-body">
+            <form action="/add" method="post" class="form" role="form" autocomplete="off">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="email" name="email" required>
+                    </div>
+                    <div class="alert alert-light bg-transparent text-black" role="alert">
+                        {{error}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Title</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="title" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Category</label>
+                    <div class="col-lg-9">
+                        <select name="cate">
+                            {% for category_name in result %}
+                            <option name="cate"value="{{category_name[0]}}">{{category_name[0]}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                     
+
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Product name</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="Pro_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Product details</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="Pro_des">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Price</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="Price" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Quantity</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="number" name="quan" required>
+                        </div>
+                    </div>
+                    <label for="formFileLg" class="form-label">Upload the image here</label>
+                    <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                        <div class="col-lg-9">
+                            <button type="submit" class="btn btn-secondary">Submit</button>
+                            <input type="reset" class="btn btn-secondary" value="Cancel">
+                        </div>
+                    </div>
+</form>
+        </div>
+    </div>
+
+
+
+    {% endblock %}

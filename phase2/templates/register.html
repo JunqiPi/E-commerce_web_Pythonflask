@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    body {
+        background: coral;
+    }
+
+    .myblock {
+        border: 1px solid black;
+        border-radius: 4%;
+        background: rgba(0,0,0,0.5);
+        margin-top: 20%;
+        padding: 3%;
+    }
+
+    .h1 {
+        margin-bottom: 5%;
+        color: coral;
+    }
+
+    .mybtn {
+        background: rgba(0,0,0,0.5);
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Nittany Lion Market</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <div class="dropdown" id="navbarText" aria-labelledby="navbarDropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Userpage
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/seller">Seller Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12"></div>
+        <div class="col-lg-6 col-md-6 col-sm-12 myblock">
+            <h1 class="h1">Registration</h1>
+            <form action="/register" method="POST" class="form-group">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-dark mybtn">Submit</button>
+                    <a href="/login" class="btn btn-block btn-dark  mybtn link">Login</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12"></div>
+    </div>
+</div>
+
+
+{% endblock %}

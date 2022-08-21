@@ -1,0 +1,181 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    body {
+        background: coral;
+    }
+
+    .myblock {
+        margin-top: 1%;
+    }
+
+    .h1 {
+        text-align: center;
+        margin-bottom: 5%;
+        color: coral;
+    }
+
+    .email {
+        text-align: center;
+        color: coral;
+    }
+
+    .mybtn {
+        background: rgba(0,0,0,0.5);
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Nittany Lion Market</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <div class="dropdown" id="navbarText" aria-labelledby="navbarDropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Userpage
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/seller">Seller Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</nav>
+<div class="col-md-8 offset-md-2 myblock">
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">User Information</h3>
+        </div>
+        <div class="card-body">
+            <form action="/personal" method="post" class="form" role="form" autocomplete="off">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Business Name</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" value="{{ bus }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="email" name="email" value="{{ email  }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Customer service number</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="tel" value="{{ ser }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Zipcode</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="number" value="{{zipcode}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">City</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" value="{{ city}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">State</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" value="{{ state}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Street</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" value="{{ street}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Old Passsword</label>
+                    <div class="col-lg-9">
+                        <input type="password" name="old" placeholder="Password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">New Password</label>
+                    <div class="col-lg-9">
+                        <input type="password" name="new" placeholder="Password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                        <button type="submit" class="btn btn-secondary">Submit</button>
+                        <input type="reset" class="btn btn-secondary" value="Cancel">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <h2 class="mb-0" style="text-align: center;">Currently Listing Items</h2>
+    <br>
+    {% for Listing_ID, Category, Title, Product_Name, Product_Description, Price, Quantity in sell %}
+    <div class="card" style="width: 77rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{Title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">List_ID : {{Listing_ID}}</h6>
+            <p class="card-text"> Category : {{ Category}}</p>
+            <p class="card-text">Product Name : {{Product_Name}}</p>
+            <p class="text-justify text-truncate para mb-0">{{Product_Description}}</p>
+            <div class="d-flex flex-row align-items-center">
+                <h4 class="mr-1">${{Price}}</h4>
+            </div>
+            <h6 class="text-success">{{Quantity}}Left</h6>
+            <form action="/vendor/offlist" method="post">
+                <button class="btn btn-lg btn-primary" name="off" value="{{Listing_ID}}">Off the list</button>
+                <br>
+            </form>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    <h2 class="mb-0" style="text-align: center;">Offlist Items</h2>
+    <br>
+    {% for Listing_ID, Category, Title, Product_Name, Product_Description, Price, Quantity in off %}
+    <div class="card" style="width: 77rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{Title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">List_ID : {{Listing_ID}}</h6>
+            <p class="card-text"> Category : {{ Category}}</p>
+            <p class="card-text">Product Name : {{Product_Name}}</p>
+            <p class="text-justify text-truncate para mb-0">{{Product_Description}}</p>
+            <div class="d-flex flex-row align-items-center">
+                <h4 class="mr-1">${{Price}}</h4>
+            </div>
+
+            <h6 class="text-success">{{Quantity}}Left</h6>
+
+            <form action="/seller/offlist" method="post">
+                <button class="btn btn-lg btn-primary" name="off" value="{{Listing_ID}}">Post the item</button>
+                <br>
+            </form>
+
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    <div class="text-center">
+        <a href="/add" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Add item</a>
+    </div>
+</div>
+
+
+{% endblock %}

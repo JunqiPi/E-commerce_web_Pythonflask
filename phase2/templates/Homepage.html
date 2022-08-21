@@ -1,0 +1,98 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Nittany Lion Market</title>
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Nittany Lion Market</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <div class="dropdown" id="navbarText"  aria-labelledby="navbarDropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Userpage
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/seller">Seller Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div style=" background-size: 80%; background-image: url('hosp.jpg');" class="jumbotron bg-cover text-white">
+        <div class="container py-5 text-center" style="color:black;">
+            <h1 class="display-4 font-weight-bold">Welcome To Nittany Lion Market !</h1>
+            <p class="font-italic mb-0">This page allow users to Register and login to Nittany Lion Market Place</p>
+            
+            <br>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/login">Login</a>
+                    <a class="dropdown-item" href="/register">Register</a>
+                </div>
+                <br><br>
+            </div>
+
+            <select class="form-select" id='choose' aria-label="Default select example">
+                <option selected>Choose an Action:</option>
+                <option value="1">Login</option>
+                <option value="2">Register</option>
+            </select>
+
+            <br><br>
+
+            <button type="button" class="btn btn-outline-primary" onclick="Visit()">go</button>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var gch;
+        document.addEventListener('DOMContentLoaded', function () {
+            var input = document.getElementById('choose');
+
+            input.onchange = function () {
+                gch = this.value;
+            }
+        })
+
+        function Visit() {
+
+            if (gch == 1) { window.location = "/login"; }
+            else if (gch == 2) { window.location = "/register"; }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <!-- Always remember to call the above files first before calling the bootstrap.min.js file -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+</body>
+</html>
